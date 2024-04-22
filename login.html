@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login Form</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        input::placeholder {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <!-- <h1>Login</h1> -->
+    <form>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="submit">Submit</button>
+    </form>
+    <script type="module">
+    
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from  "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration1
+  const firebaseConfig = {
+  apiKey: "AIzaSyCy71ySuaNynHDdw2eKkkhPRll-KZst4bc",
+  authDomain: "event-reg-58dd1.firebaseapp.com",
+  projectId: "event-reg-58dd1",
+  storageBucket: "event-reg-58dd1.appspot.com",
+  messagingSenderId: "493120626908",
+  appId: "1:493120626908:web:6eca2765c9e7622e30d419",
+  measurementId: "G-1CJYS970F7"
+};
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+
+  let name = document.getElementById("name");
+  let email = document.getElementById("email");
+  let password = document.getElementById("password");
+  let submit = document.getElementById("submit");
+
+  submit.addEventListener("click",function(e){
+    e.preventDefault();
+    var obj = {
+        email:email.value,
+        password:password.value
+    }
+    signInWithEmailAndPassword(auth,obj.email,obj.password)
+    .then((success)=>{
+        window.location.replace("./index.html")
+        console.log(success);
+    })
+    .catch((err)=>{
+        alert(err);
+    })
+  })
+
+
+
+
+
+  
+
+    </script>
+  </body>
+</html>
